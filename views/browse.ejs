@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a href="http://localhost:2000/">home</a>
+    <a href="http://localhost:2000/search">search</a>
+    <hr>
+    <div class="profile__tab__content_arng">
+        <div class="pro_tab profile__tab__name">
+            <span>NAME:</span>
+            <%=profile.name %>
+        </div>
+
+        <div class="pro_tab profile__tab__email">
+            <span>EMAIL:</span>
+
+            <%= profile.email %>
+        </div>
+        <div class="pro_tab profile__tab__mob">
+            <span>PHONE:</span>
+            <%= profile.phone %>
+        </div>
+        <div class="user__feed">
+
+            <% data.rows.forEach(e => { %>
+                <a href="/browse/<%= e.rid %>">
+                    <div class="rest__card">
+
+                        <div class="rest__name">
+                            <%= e.rname %>
+                        </div>
+                        <div class="rest__rating">
+                            <svg width="15px" fill="white" id="Capa_1" enable-background="new 0 0 448.941 448.941" viewBox="0 0 448.941 448.941" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m448.941 168.353h-161.338l-63.132-168.353-63.132 168.353h-161.339l121.478 106.293-65.36 174.295 168.353-84.176 168.353 84.176-65.361-174.296z" />
+                    </svg>
+                            <%= e.rating %>
+                        </div>
+
+                        <div class="rest__location">
+                            <%= e.address %>
+                        </div>
+                    </div>
+                </a>
+                <% }); %>
+        </div>
+</body>
+
+</html>

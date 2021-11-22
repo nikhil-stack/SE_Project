@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/search.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/">
+        <div class="pro_tab profile__tab__dashboard">home</div>
+    </a>
+    <a href="http://localhost:2000/browse">browse</a>
+    <hr> <div class="profile__tab__content_arng">
+    <div class="pro_tab profile__tab__name">
+        <span>NAME:</span>
+
+        <%= profile.name %>
+    </div>
+
+    <div class="pro_tab profile__tab__email">
+        <span>EMAIL:</span>
+
+        <%= profile.email %>
+    </div>
+    <div class="pro_tab profile__tab__mob">
+        <span>PHONE:</span>
+
+        <%= profile.phone %>
+    </div>
+
+
+    </div>
+
+    <div class="search__tab">
+        <form action="/search" , method="GET">
+            <div class="search__tab__1">
+                <input type="text" placeholder="Search Restaurants/Dishes/Categories" name="q">
+                <select name="type" id="">
+                    <option value="rest">Restaurants</option>
+                    <option value="dish">Dishes</option>
+                    <option value="cat">Category</option>
+               
+                </select>
+            </div>
+            <div class="search__tab__2">
+                <button type="submit">Search </button>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="user__feed">
+
+
+        <% if(check == 'true') { %>
+            <div class="rest__card" style="padding: auto;">No Results</div>
+            <% } else if(check == 'false') { %>
+                <% searchresults.forEach(res => { %>
+                    <a href="/browse/<%= res.rid %>">
+                        <div class="rest__card">
+                            <img width="229px" src="./frontend/images/rest_img_<%= res.rid %>.jpg" alt="">
+                            <div class="rest__name">
+                                <%= res.rname %>
+                            </div>
+                            <div class="rest__rating">
+                                <svg width="15px" fill="white" id="Capa_1" enable-background="new 0 0 448.941 448.941" viewBox="0 0 448.941 448.941" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m448.941 168.353h-161.338l-63.132-168.353-63.132 168.353h-161.339l121.478 106.293-65.36 174.295 168.353-84.176 168.353 84.176-65.361-174.296z" />
+                            </svg>
+                                <%= res.rating %>
+                            </div>
+                            <div class="rest__category">
+                                <p>
+                                    <%= res.category %>
+                                </p>
+                            </div>
+                            <div class="rest__location">
+                                <%= res.address %>
+                            </div>
+                        </div>
+                    </a>
+                    <% }); %>
+                        <% } %>
+
+    </div>
+
+
+</body>
+
+</html>

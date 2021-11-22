@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/u_register.css">
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <div class="main__body">
+
+        <div class="main__body__left">
+            <img src="../frontend/images/register_user.html.jpg" alt="" srcset="">
+        </div>
+
+        <div class="main__body__right">
+
+            <div class="form">
+                <form action="/users/signup" onsubmit="return (validate())" name="userregister" method="POST">
+                    <input type="name" required placeholder="name" name="name">
+
+                    <input type="email" required placeholder="username" name="email" id="email_inp">
+                    <input type="password" required placeholder="password" name="password" id="password_inp-1">
+                    <input type="password" required placeholder="confirm password" name="password2" id="password_inp-1">
+                    <input type="text" class="input-phone" name="phone" required placeholder="phone" id="phone">
+
+                    <input type="text" name="address" required placeholder="address" id="address">
+
+
+                    <button id="signup" type="submit">Sign Up</button>
+
+                    <div class="form__footer">
+                        <!-- <a id="forgot_pass" href="#">Forgot Password?</a> -->
+                        <a id="create_an_acc" href="/users/login">Already a member?</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

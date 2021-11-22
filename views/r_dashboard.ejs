@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/r_dashboard.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/rdashboard/menu">Menu</a>
+    <a href="/rdashboard/feedback/">Feedback</a>
+    <a href="/">home</a>
+    <hr>
+
+
+    <div class="rest__dis__name">
+        <span>NAME:</span>
+
+        <%= profile.name %>
+            <br>
+            <span>ADDRESS:</span>
+            <%=profile.address %>
+    </div>
+    <div class="menu">
+
+        <% if(check == 'true') { %>
+            <% o.forEach(order => { %>
+                <div class="card">
+
+                    <div class="card__right">
+                        <div class="rest__name">
+                            <b>#<%= order.oid %></b>
+                            <span class="rest__feedback"></span>
+                        </div>
+                        <div class="rest__category">
+                            <%= order.otime %>
+                        </div>
+                        <div class="rest__dish__items">
+                            <% Object.entries(order.items).forEach(dish => { %>
+                                <div class="rest__dish">
+                                    <span class="dish__name">-<%= dish[0] %> <b>x<%= dish[1] %></b> </span>
+                                    <div class="dish__price"> </div>
+                                </div>
+                                <% }); %>
+                        </div>
+                        <div class="rest__total__price">
+                            <span class="total__price__label">Total</span>
+                            <div class="total__price">₹
+                                <%= order.amount %>
+                            </div>
+                        </div>
+                        <div class="card__response__tab">
+                            <a href="/rdashboard/accept/<%= order.oid %>"><button class="card__response__tab__accept" onclick="emitevent()">Finish Order</button></a>
+                            <script>
+                                function emitevent() {
+                                    var socket = io.connect();
+                                    socket.emit('accepting-order', '<%= order.oid %>');
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+                    <% } else if(check == 'false') { %>
+                        <div class="menu">
+                            <b>No Orders</b>
+                        </div>
+                        <% } %>
+    </div>
+
+
+</body>
+
+</html>

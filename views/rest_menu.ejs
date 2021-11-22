@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App name</title>
+    <link rel="stylesheet" href="../css/rest_menu.css">
+</head>
+
+<body>
+
+    <div class="form1">
+        <form action="/rdashboard/menu" method="POST">
+            <input type="text" required placeholder="Enter Dish Name" name="dname" id="">
+            <input type="number" name="price" required placeholder="Enter Dish price" id="">
+            <button type="submit">Add Dish</button>
+        </form>
+    </div>
+
+
+
+
+    <div class="container ">
+
+        <nav>
+            <a href="/">
+                <div class="brand">
+                    <img width="35px" src="../frontend/images/brand-icon.png" alt="" srcset="">
+                    <p>Home</p>
+
+                </div>
+            </a>
+
+
+        </nav>
+
+        <div class="menu">
+
+            <% if(check == 'true') { %>
+                <% menu.forEach(dish => { %>
+                    <div class="menu__dish">
+                        <div class="menu__dish__left">
+                            <div class="dish__name">
+                                <%= dish.dname %>
+                            </div>
+
+                        </div>
+                        <div class="menu__dish__right">
+                            <div class="dish__price">₹
+                                <%= dish.price %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                        <% } %>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+    <script src="../frontend/js/jquery.min.js"></script>
+    <script>
+        function hamburg() {
+            $('.container').toggleClass('blur');
+            $('.ham__items').toggleClass('ham__unhide');
+            // $('.ham__items').toggleClass('.ham__items');
+        };
+
+        function xyz() {
+            $('.profile__tab').toggleClass('hide');
+            $('.container').toggleClass('blur');
+        }
+
+        function abc() {
+            $('.profile__tab').toggleClass('hide');
+            // $('.container').toggleClass('blur');
+            $('.ham__items').toggleClass('ham__unhide');
+        }
+        $('#profile__tab__close').click(xyz);
+        $('.profile ').click(xyz);
+        $('.ham__profile ').click(abc);
+        $('.ham').click(hamburg);
+        $('#close').click(hamburg);
+        $('.menu__add__dishes button').click(
+            function() {
+                $(".add__dishes__popup").toggleClass("hide");
+                $('.container').toggleClass('blur');
+            }
+        )
+        $('#add__dishes__popup__close').click(
+            function() {
+                $(".add__dishes__popup").toggleClass("hide");
+                $('.container').toggleClass('blur');
+            }
+        )
+    </script>
+</body>
+
+</html>

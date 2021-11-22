@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App name</title>
+    <link rel="stylesheet" href="../css/past_order.css">
+</head>
+
+<body>
+
+
+
+    <a href="/">Home</a>
+    <hr>
+
+
+
+
+
+    <div class="main__body">
+        <div class="main__body__feed">
+
+            <% if(check == 'false') { %>
+                <b>You Don't have any orders</b>
+                <% } %>
+                    <% if(check == 'true') { %>
+                        <% o.forEach(order => { %>
+                            <div class="card">
+                                <div class="card__left">
+                                    <img src="../frontend/images/rest_img_<%= order.rid %>.jpg" width="280px" alt="">
+                                </div>
+                                <div class="card__right">
+                                    <div class="rest__name">
+                                        <%= order.rname %>
+                                    </div>
+                                    <div class="rest__category">
+                                        <%= order.category %>
+                                    </div>
+                                    <% Object.entries(order.items).forEach(dish => { %>
+                                        <div class="rest__dish__items">
+
+                                            <div class="rest__dish">
+                                                <span class="dish__name"><%= dish[0] %> x<%= dish[1] %></span>
+                                                <!-- <div class="dish__price">₹<%= dish.price %></div> -->
+                                            </div>
+                                        </div>
+                                        <% }); %>
+                                            <div class="rest__total__price">
+                                                <span class="total__price__label">Total</span>
+                                                <div class="total__price">₹
+                                                    <%= order.amount %>
+                                                </div>
+                                            </div>
+                                            <a href="/feedback/<%= order.oid %>"><button class=" rest__rating__tab rating_btn">Feedback</button></a>
+                                </div>
+                            </div>
+                            <% }); %>
+                                <% } %>
+                                    <!-- <div class="card">
+                <div class="card__left">
+                    <img src="./images/rest_card_1.jpg" width="280px" alt="">
+                </div>
+                <div class="card__right">
+                    <div class="rest__name">
+                        Icy Spicy
+                    </div>
+                    <div class="rest__category">
+                        Fast food
+                    </div>
+                    <div class="rest__dish__items">
+            
+                        <div class="rest__dish">
+                            <span class="dish__name">allo paratha</span>
+                            <div class="dish__price">₹800</div>
+                        </div>
+            
+                        <div class="rest__dish">
+                            <span class="dish__name">allo paratha</span>
+                            <div class="dish__price">₹800</div>
+                        </div>
+                        <div class="rest__dish">
+                            <span class="dish__name">allo paratha</span>
+                            <div class="dish__price">₹800</div>
+                        </div>
+                    </div>
+                    <div class="rest__total__price">
+                        <span class="total__price__label">Total</span>
+                        <div class="total__price">₹1600</div>
+                    </div>
+                    <div class=" rest__rating__tab">
+                        <input class="rating_btn star2" type="radio" name="" id="star2-1"> <label class="star2" for="star2-1"></label>
+                        <input class="rating_btn star2" type="radio" name="" id="star2-2"> <label class="star2" for="star2-2"></label>
+                        <input class="rating_btn star2" type="radio" name="" id="star2-3"> <label class="star2" for="star2-3"></label>
+                        <input class="rating_btn star2" type="radio" name="" id="star2-4"> <label class="star2" for="star2-4"></label>
+                        <input class="rating_btn star2" type="radio" name="" id="star2-5"> <label class="star2" for="star2-5"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__left">
+                    <img src="./images/rest_card_1.jpg" width="280px" alt="">
+                </div>
+                <div class="card__right">
+                    <div class="rest__name">
+                        Icy Spicy
+                    </div>
+                    <div class="rest__category">
+                        Fast food
+                    </div>
+                    <div class="rest__dish__items">
+            
+                        <div class="rest__dish">
+                            <span class="dish__name">allo paratha</span>
+                            <div class="dish__price">₹800</div>
+                        </div>
+            
+                        <div class="rest__dish">
+                            <span class="dish__name">allo paratha</span>
+                            <div class="dish__price">₹800</div>
+                        </div>
+                        <div class="rest__dish">
+                            <span class="dish__name">allo paratha</span>
+                            <div class="dish__price">₹800</div>
+                        </div>
+                    </div>
+                    <div class="rest__total__price">
+                        <span class="total__price__label">Total</span>
+                        <div class="total__price">₹1600</div>
+                    </div>
+                    <div class=" rest__rating__tab">
+                        <input class="rating_btn star3" type="radio" name="" id="star3-1"> <label class="star3" for="star3-1"></label>
+                        <input class="rating_btn star3" type="radio" name="" id="star3-2"> <label class="star3" for="star3-2"></label>
+                        <input class="rating_btn star3" type="radio" name="" id="star3-3"> <label class="star3" for="star3-3"></label>
+                        <input class="rating_btn star3" type="radio" name="" id="star3-4"> <label class="star3" for="star3-4"></label>
+                        <input class="rating_btn star3" type="radio" name="" id="star3-5"> <label class="star3" for="star3-5"></label>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <script src="../frontend/js/jquery.min.js"></script>
+        <script>
+            function hamburg() {
+                $('.container').toggleClass('blur');
+                $('.ham__items').toggleClass('ham__unhide');
+                // $('.ham__items').toggleClass('.ham__items');
+            };
+            $('#profile__tab__close').click(function() {
+                $('.profile__tab').toggleClass('hide');
+                $('.container').toggleClass('blur');
+            })
+            $('.profile ').click(function() {
+                $('.profile__tab').toggleClass('hide');
+                $('.container').toggleClass('blur');
+            })
+            $('.ham__profile ').click(function() {
+                    $('.profile__tab').toggleClass('hide');
+                    // $('.container').toggleClass('blur');
+                    $('.ham__items').toggleClass('ham__unhide');
+                })
+                // $('.rating_btn').click(function(){
+                //     var classname = $(this).attr('class');
+                //     classname = classname.slice(11,16);
+
+
+            // })
+            $('.ham').click(hamburg);
+            $('#close').click(hamburg);
+            //   $('.rating_btn').click(function () {
+            //         var classname = $(this).attr('class');
+            //         classname = classname.slice(11, 16);
+            //         // $("." + classname).attr('disabled', 'disabled');
+            //         console.log(classname);
+            //         $('.add__dishes__popup').toggleClass('hide');
+            //         // $('.container').toggleClass("blur");
+            //     })
+            // $("#add__dishes__popup__close").click(
+            //     function () {
+            //         // $(".container").toggleClass("blur");
+            //         $(".add__dishes__popup").toggleClass("hide");
+            //     }
+            // )
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App name</title>
+    <style>
+        a:link,
+        a:visited {
+            background-color: white;
+            color: black;
+            border: 2px solid green;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        a:hover,
+        a:active {
+            background-color: green;
+            color: white;
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="ham__items__btn">
+        <div class="logout"><svg width="24" height="28" viewBox="0 0 333 237" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M166.53 237C74.6964 237 0 187.04 0 125.643C0 91.5768 22.8903 59.7894 62.7668 38.5105C67.2177 36.1304 73.7578 36.6145 77.3003 39.5996C80.9034 42.5847 80.1767 46.9615 75.6956 49.3416C40.7545 67.9985 20.7406 95.8124 20.7406 125.664C20.7406 179.416 86.1416 223.164 166.53 223.164C246.919 223.164 312.32 179.395 312.32 125.664C312.32 95.9738 292.488 68.2809 257.94 49.6643C253.489 47.2641 252.763 42.9074 256.366 39.9223C259.969 36.9372 266.479 36.4935 270.899 38.8735C310.412 60.1525 333 91.7785 333 125.664C333.091 187.06 258.364 237 166.53 237V237Z" fill="white" /><path d="M165.705 137H165.62C160.257 137 155.972 128.717 156 124.733L157.561 8.38862C157.618 4.40508 162.754 0.611231 167.379 0C172.743 0.0421538 177.056 2.69785 176.999 6.68138L175.41 125.176C175.354 129.159 171.04 137 165.705 137Z" fill="white" /></svg>
+            <span class="logout__button"><a href="/restaurants/logout">Logout</a></span>
+            <span>
+                <a href="/">
+                    Home
+                </a>
+            </span>
+            <hr>
+        </div>
+    </div>
+    </div>
+    <div class="container ">
+        <div class="menu">
+            <% if(check=='true') {
+            %>
+                <% o.forEach(order=> {
+                %>
+                    <div class="card">
+                        <div class="card__left"> <img src="../frontend/images/rest_card_1.jpg" width="280px" alt=""> </div>
+                        <div class="card__right">
+                            <div class="rest__name"> <b>#<%=order.oid %></b> <span class="rest__feedback"></span> </div>
+                            <div class="rest__category">
+                                <%=order.otime %>
+                            </div>
+                            <div class="rest__dish__items">
+                                <% Object.entries(order.items).forEach(dish=> {
+                    %>
+                                    <div class="rest__dish"> <span class="dish__name">-<%=dish[0] %> <b>x<%=dish[1] %></b> </span>
+                                        <div class="dish__price"> </div>
+                                    </div>
+                                    <%
+                }
+                );
+                %>
+                            </div>
+                            <div class="rest__total__price"> <span class="total__price__label"><b>Feedback: </b><%=order.feedback %></span>
+                                <div class="total__price">☆
+                                    <%=order.rating %>
+                                </div>
+                            </div>
+                            <div class="card__response__tab"> </div>
+                        </div>
+                    </div>
+                    <%
+            }
+            );
+            %>
+                        <%
+        }
+        
+        %>
+        </div>
+    </div>
+    <script src="../frontend/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+                var socket = io();
+                socket.on('add-order', (rid) => {
+                    if (rid == '<%= profile.rid %>') {
+                        location.reload();
+                    }
+                });
+            }
+
+        );
+    </script>
+    <script>
+        function hamburg() {
+            $('.container').toggleClass('blur');
+            $('.ham__items').toggleClass('ham__unhide');
+            // $('.ham__items').toggleClass('.ham__items');
+        }
+
+        ;
+
+        function xyz() {
+            $('.profile__tab').toggleClass('hide');
+            $('.container').toggleClass('blur');
+        }
+
+        function abc() {
+            $('.profile__tab').toggleClass('hide');
+            // $('.container').toggleClass('blur');
+            $('.ham__items').toggleClass('ham__unhide');
+        }
+
+        $('#profile__tab__close').click(xyz);
+        $('.profile ').click(xyz);
+        $('.ham__profile ').click(abc);
+        $('.ham').click(hamburg);
+        $('#close').click(hamburg);
+        $('.card__response__tab__accept').click(function() {
+                $(this).css('display', 'none');
+            }
+
+        ) $('.card__response__tab__delivered').click(function() {
+                console.log("eg");
+                $(this).text("✔ Delivered ");
+                $(this).attr("disabled", "disabled");
+            }
+
+        ) $('#feedback__alert__close').click(function() {
+                $('.feedback__alert').addClass("hide");
+                $(".container").toggleClass("blur");
+            }
+
+        ) $(".rest__feedback").click(function() {
+                $('.feedback__alert').removeClass("hide");
+                $(".container").toggleClass("blur");
+            }
+
+        )
+    </script>
+</body>
+
+</html>
